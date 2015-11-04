@@ -1,8 +1,7 @@
-#!/usr/bin/env python
-
 import novaclient.v1_1.servers as svclient
 import novaclient.v1_1.client as nvclient
 from credentials import get_nova_creds
+import time
 
 class NovaManager(object): 
 
@@ -14,5 +13,9 @@ class NovaManager(object):
 	def resetErrorStatus(self):
 		for server in self.nova.servers.list(search_opts={'all_tenants': 1}):
 			if server.status == "ERROR":
+				print "reseting "+server.name
 				self.svr.reset_state(server.id,'active')
+				print "rebooting "+server.name
 				self.svr.reboot(server.id,'SOFT')
+				time.sleep(39)
+				
