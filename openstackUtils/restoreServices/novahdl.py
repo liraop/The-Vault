@@ -13,9 +13,12 @@ class NovaManager(object):
 	def resetErrorStatus(self):
 		for server in self.nova.servers.list(search_opts={'all_tenants': 1}):
 			if server.status == "ERROR":
-				print "reseting "+server.name
-				self.svr.reset_state(server.id,'active')
-				print "rebooting "+server.name
-				self.svr.reboot(server.id,'SOFT')
-				time.sleep(39)
+				try:
+					print "reseting "+server.name
+					self.svr.reset_state(server.id,'active')
+					print "rebooting "+server.name
+					self.svr.reboot(server.id,'SOFT')
+				except:
+					pass
+				time.sleep(10)
 				
