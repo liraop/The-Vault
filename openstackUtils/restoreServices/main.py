@@ -11,10 +11,10 @@ def SSH(host):
                 stderr=subprocess.PIPE)
 	return ssh.communicate()[0]
 
-def fixVolumes(cindermanager):
+def fixVolumes(cindermgmt):
     #reset volumes status
     print "checking for volumes in error state"
-    cindermanager.resetErrorStatus()
+    cindermgmt.resetErrorStatus()
     print "done"
 
 def rebootVolumeService(cindermgmt):
@@ -26,25 +26,31 @@ def rebootVolumeService(cindermgmt):
     SSH('storage01')
     print "done"
 
-def printMenu():
+def mainMenu():
     print "1 - show volumes"
-    print "2 - fix volumes"
+    print "2 - fix error volumes"
     print "3 - show instances state"
-    print "4 - reboot error instances" 
+    print "4 - fix error instances" 
     print "0 - exit"
-    
+
 def main(cindermgmt,novamgmt):
     while (True):
-	printMenu()
+	mainMenu()
 	choice = int(input())
 	if choice == 1:
             cindermgmt.getVolumesStatus()
-	elif choice == 3:
+        elif choice == 2:
             fixVolumes(cindermgmt)
             rebootVolumeService(cindermgmt)
-            novamgmt.resetErrorStatus()
+	elif choice == 3:
+            novamgmt.getVmStatus()
+        elif choice == 4:
+            choice = int(input("Reboot type: 0 - Soft 1 - Hard\n"))
+            novamgmt.restoreVmStatus(choice)
 	elif choice == 0:
             exit()
+	else:
+            print "invalid choice"
 
 if __name__ == "__main__":
     cinder = CinderManager()

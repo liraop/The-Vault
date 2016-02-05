@@ -19,8 +19,10 @@ class CinderManager(object):
 			if volume.status == 'error':
 				print "reseting: "+volume.id
 				self.volmgmt.reset_state(volume.id,'in-use')
-				time.sleep(5)
+				time.sleep(2)
+                print "Done reseting volume states"
 
 	def getVolumesStatus(self):
 		for volume in self.cinder.volumes.list(search_opts={'all_tenants': 1}):
-			print "ID: "+volume.id+" Status: "+ volume.status
+			print "ID: "+volume.id+"--- Status: "+ volume.status
+                print "\n"
