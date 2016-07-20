@@ -17,19 +17,21 @@ else
 fi
 
 MAXCPU=0
-MINCPU=100
+MINCPU=100.0
 MAXMEM=0
-MINMEN=100
+MINMEM=100.0
 
 while [ $COUNTER -le $SAMPLES ]
 do
 
 	RUN=$(ps aux | 
-	awk '{ if ($1 == "'"$P_USER"'") {
-		run_cpu += $3;
-		run_mem += $4;}
+	awk '{ processes=0;
+		if ($1 == "'"$P_USER"'") {
+			processes++;	
+			run_cpu += $3;
+			run_mem += $4;}
 		} 
-		END {print run_cpu,run_mem}')
+		END {print run_cpu,run_mem,processes}')
 
 	echo "### BEGIN RUN $COUNTER ###"
 	RUNCPU=$(echo $RUN | cut -d" " -f1)
@@ -38,10 +40,14 @@ do
 	echo "Sample memory usage "$RUNMEM"%"
 	echo "### END RUN $COUNTER ###"
 
-	MAXCPU=$(echo "$RUNCPU $MAXCPU" | awk '{ if ($0 > $1) {print $1}}')
-	MAXMEM=$(echo "$RUNMEM $MAXMEM" | awk '{ if ($0 > $1) {print $1}}')
-        MINCPU=$(echo "$RUNCPU $MINCPU" | awk '{ if ($0 < $1) {print $0}}')
-        MINMEM=$(echo "$RUNMEM $MINMEM" | awk '{ if ($0 < $1) {print $0}}')
+	MAXCPU=$(echo "$RUNCPU $MAXCPU" | awk '{ max = ($1 > $2 ? $1 : $2) } {print max}')
+	MAXMEM=$(echo "$RUNMEM $MAXMEM" | awk '{ max = ($1 > $2 ? $1 : $2) } {print max}')
+
+	MINCPU=$(echo "$RUNCPU $MINCPU" | awk '{ min = ($1 < $2 ? $1 : $2) }  {print min}')
+        MINMEM=$(echo "$RUNMEM $MINMEM" | awk '{ min = ($1 < $2 ? $1 : $2) }  {print min}')
+
+	
+
 
 	COUNTER=$((COUNTER+1))
 	if [ $COUNTER -le $SAMPLES ]; then
@@ -50,3 +56,5 @@ do
 done
 echo "CPU usage - Max:"$MAXCPU"% Min:"$MINCPU"%"
 echo "Memory usage - Max:"$MAXMEM"% Min:"$MINMEM"%"
+
+### extra feature ###
