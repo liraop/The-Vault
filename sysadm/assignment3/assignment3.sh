@@ -13,6 +13,9 @@ else
         ASSIGNSET=$(ls EXERCICIO*.sh )
 fi	
 
+PASSED=""
+FAILED=""
+
 for assign in $ASSIGNSET
 do
 		TESTPATTERN=$(echo $assign | cut -d"." -f1 | cut -d"_" -f1-2)		# pattern to match tests in folder
@@ -33,5 +36,17 @@ do
                         echo "DIFERENCA PARA A SAIDA ESPERADA:"
                         DIFF=$(diff "$test" "$OUTFILE.out")				# diff from test output vs expected output
                         echo -e "$DIFF\n"
+
+			### extra feature - tests summary 
+			### print passed/failed exercises 
+			
+			if [ -z "$DIFF" ]; then
+				PASSED=$(echo -e "$PASSED\n$ASSIGNID - Test#: $TESTID")
+			else 
+                                FAILED=$(echo -e "$FAILED\n$ASSIGNID - Test#: $TESTID")	
+			fi
 	done
 done
+
+echo -e "PASS:$PASSED"
+echo -e "FAIL:$FAILED"
