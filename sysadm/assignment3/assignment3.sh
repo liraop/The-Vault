@@ -1,13 +1,31 @@
 #!/bin/bash
 
 if [ "$#" -eq 1 ]; then
-	EXER="$1"
+	EXER="EXERCICIO_$1"
 
-	TESTSET=$(ls *.in | grep "EXERCICIO_$1")
-	echo "$TESTSET"
+	TESTSET=$(ls *.in | grep "$EXER")
+	ASSIGNSET=$(ls *.sh | grep "$EXER")
 	
-	
+	for assign in $ASSIGNSET
+	do
+		ASSIGNID=$(echo $assign | cut -d"." -f1)
+		echo "$ASSIGNID"
+		for test in $TESTSET
+		do
+			TESTID=$(echo $test | cut -d'_' -f2)
+	                echo "-SAIDA PARA ENTRADA $TESTID:"
 
+	                TESTRESULT=$(sh $assign `cat $test`)
+	                echo "$TESTRESULT"
+
+	                OUTFILE=$(echo $test | cut -d"." -f1)
+	                echo $TESTRESULT > $OUTFILE.out
+
+	                echo "DIFERENCA PARA A SAIDA ESPERADA:"
+	                DIFF=$(diff "$test" "$OUTFILE.out")
+	                echo $DIFF
+		done	
+	done
 fi
 
 
