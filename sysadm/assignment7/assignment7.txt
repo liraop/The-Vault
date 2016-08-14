@@ -1,0 +1,34 @@
+Exercício 7
+
+Um usuário separou um conjunto de páginas que ele deseja avaliar. Esse processo de avaliação busca basicamente identificar se determinadas palavras ocorrem, ou não, em determinada página.
+
+Você deve construir o script responsável por esta avaliação. Para isto, seu script pode receber 1 ou 2 parâmetros. O primeiro parâmetro indica um arquivo contendo páginas a serem avaliadas (um endereço por linha). O segundo parâmetro, quando existente, indica um conjunto de palavras que devem estar na página pesquisada.
+
+Baixe cada página indicada no arquivo e identifique se ela está online ou não (i.e. se ela retorna um status 200). Caso o usuário tenha passado o segundo parâmetro, identifique se as palavras que estão no arquivo também estão na página retornada.
+
+Exemplo de arquivo de urls (sites.txt):
+http://www.folha.uol.com.br/
+http://www.uol.com.br/
+http://dsc.ufcg.edu.br/teste.html
+http://portal.mec.gov.br/index.php
+
+Exemplo de arquivos de palavras (palavras.txt):
+educação
+professores
+recursos
+
+Primeiro exemplo de execução:
+meu_script.sh sites.txt
+http://www.folha.uol.com.br/ 200
+http://www.uol.com.br/ 200
+http://dsc.ufcg.edu.br/teste.html 404
+http://portal.mec.gov.br/index.php 200
+
+Segundo exemplo de execução:
+meu_script.sh sites.txt palavras.txt
+http://www.folha.uol.com.br/ 200
+http://www.uol.com.br/ 200
+http://dsc.ufcg.edu.br/teste.html 404
+http://portal.mec.gov.br/index.php 200 OK!
+
+Lembre-se de implementar uma funcionalidade adicional. Utilize o wget ou curl para baixar as páginas indicadas.
