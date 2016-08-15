@@ -5,9 +5,6 @@ SITES=`cat $1`
 if [ $# -gt 1  ]; then
         WORDS=`cat $2`
 	WORDSTATUS="OK!"
-#else
-#        WORDS=""
-#	MSG=""
 fi
 
 
