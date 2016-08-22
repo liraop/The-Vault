@@ -1,0 +1,74 @@
+Um dos utilitários básicos do libc (biblioteca básica C) do linux é o "getent". Este utilitário serve como mecanismo de consulta de um nome em diferentes bases do sistema. Uma das funçes do getent está justamente na resoluço de nomes de dominios.
+
+matheusgr@gaita:/tmp$ getent hosts reddit.com
+198.41.208.142  reddit.com
+198.41.208.138  reddit.com
+198.41.209.138  reddit.com
+198.41.208.143  reddit.com
+198.41.209.142  reddit.com
+198.41.209.137  reddit.com
+198.41.209.140  reddit.com
+198.41.209.136  reddit.com
+198.41.208.139  reddit.com
+198.41.209.141  reddit.com
+198.41.208.141  reddit.com
+198.41.209.139  reddit.com
+198.41.208.140  reddit.com
+198.41.208.137  reddit.com
+198.41.209.143  reddit.com
+matheusgr@gaita:/tmp$ echo $?
+0
+matheusgr@gaita:/tmp$ getent hosts splab.ufcg.edu.br
+150.165.98.40   splab.ufcg.edu.br
+matheusgr@gaita:/tmp$ echo $?
+0
+matheusgr@gaita:/tmp$ getent hosts xpto.splab.ufcg.edu.br
+matheusgr@gaita:/tmp$ echo $?
+2
+matheusgr@gaita:/tmp$ getent hosts m.folha.com
+200.147.118.38  volga06.folha.com.br m.folha.com
+matheusgr@gaita:/tmp$
+
+Observe que mais de um IP pode ser fornecido como resposta, bem como mais de um nome de host. Ainda, o código de saída do getent varia de acordo com o resultado da consulta. Em caso de sucesso, a saída do código é 0 e, em caso de falha, 2.
+
+Uma prática comum de muitos sites, como folha.com por exemplo, é colocar o site para verso mobile no subdomínio "m". 
+
+Exercício
+
+Seu programa irá operar de duas maneiras: recebendo dois parmetros "-f arquivo" ou recebendo um host como parmetro.
+
+O arquivo passado com o parmetro -f contem, em cada linha, um domínio. Exemplo:
+
+reddit.com
+folha.com
+splab.ufcg.edu.br
+xpto.splab.ufcg.edu.br
+
+Para cada host avaliado, pede-se que voc:
+Indique se é um nome válido
+Calcule o número de IPs nas quais cada nome resolve;
+Indique se há um domínio "m";
+
+Exemplo de saída:
+matheusgr@gaita:/tmp$ cat dominios_teste
+reddit.com
+folha.com
+splab.ufcg.edu.br
+xpto.splab.ufcg.edu.br
+matheusgr@gaita:/tmp$ ./testa_dominios.sh -f dominios_teste
+reddit.com 15 MOBILE
+folha.com 1 MOBILE
+splab.ufcg.edu.br 1
+xpto.splab.ufcg.edu.br ERRO
+matheusgr@gaita:/tmp$ ./testa_dominios.sh reddit.com
+reddit.com 15 MOBILE
+
+A indicaço de se é MOBILE ou no só existe para domínios válidos.
+
+Lembre-se de fazer uma funcionalidade extra.
+
+Exemplos:
+Tempo para fazer as consultas
+Indicaço do endereço reverso (i.e. fazendo a consulta pelos IPs retornados)
+Resolver domínios principais (ex: ufcg.edu.br para splab.ufcg.edu.br)
+
