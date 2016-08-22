@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function main
+function main()
 {
 	for SITE in `cat $1`; do
 		GOUT=`getent hosts $SITE`
@@ -8,10 +8,20 @@ function main
 		if [ $STATUS -gt 0 ]; then
 			printf "$SITE ERROR\n"
 		else 
-			IPS=`printf "$GOUT" | wc -l`
-			printf "$SITE $IPS\n"
+			MOBILE=$(hasMobile $SITE)
+			IPS=`echo "$GOUT" | wc -l`
+			printf "$SITE $IPS $MOBILE\n"
 		fi
 	done
+}
+
+function hasMobile()
+{
+	getent hosts "m.$1" >> /dev/null
+	STATUS=`printf $?`
+	if [ $STATUS -eq 0 ]; then
+		echo "MOBILE"
+        fi
 }
 
 while getopts f: OPT; do
@@ -20,5 +30,4 @@ while getopts f: OPT; do
 		main $FILENAME ;;
 	esac
 done
-
 exit 0
