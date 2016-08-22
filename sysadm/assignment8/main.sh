@@ -29,6 +29,9 @@ function getStatus()
                         MOBILE=$(hasMobile $URL)
                         IPS=`echo "$GOUT" | wc -l`
                         printf "$URL $IPS $MOBILE\n"
+
+			PING=`ping -c 1 $URL |  grep -o "time=[0-9]\{1,4\}*.[0-9]\{1,4\}" `   	### extra feature - ping delay for each site
+			printf "Ping $PING ms\n"
                 fi
 }
 
