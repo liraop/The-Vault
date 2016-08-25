@@ -1,0 +1,45 @@
+Exercício 9
+
+Um sistema local barrou todo acesso a servidores NTP e você deseja conseguir sincronizar o relógio da sua máquina. Para isto, é necessário capturar a data/hora de alguma fonte confiável.
+
+Felizmente você lembrou que um dos cabeçalhos de uma requisição HTTP é a hora e data, como mostram os exemplos abaixo:
+matheusgr@batuta:~$ curl -I 'http://google.com'
+HTTP/1.1 302 Found
+Cache-Control: private
+Content-Type: text/html; charset=UTF-8
+Location: http://www.google.com.br/?gfe_rd=cr&ei=r1u6V9v9EuSp8weStbrICw
+Content-Length: 262
+Date: Mon, 22 Aug 2016 01:55:59 GMT
+Exemplo com o Curl
+
+matheusgr@batuta:~$ wget --server-response --spider http://www.example.com/
+Spider mode enabled. Check if remote file exists.
+--2016-08-21 22:56:32--  http://www.example.com/
+Resolving www.example.com (www.example.com)... 93.184.216.34, 2606:2800:220:1:248:1893:25c8:1946
+Connecting to www.example.com (www.example.com)|93.184.216.34|:80... connected.
+HTTP request sent, awaiting response...
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=604800
+  Content-Type: text/html
+  Date: Mon, 22 Aug 2016 01:57:55 GMT
+  Etag: "359670651+ident"
+  Expires: Mon, 29 Aug 2016 01:57:55 GMT
+  Last-Modified: Fri, 09 Aug 2013 23:54:35 GMT
+  Server: ECS (fll/0761)
+  Vary: Accept-Encoding
+  X-Cache: HIT
+  x-ec-custom-error: 1
+  Content-Length: 1270
+Length: 1270 (1.2K) [text/html]
+Exemplo com o wget
+
+Faça um script que faça uma leitura de tempo (HH:MM:SS) dos cabeçalhos de uma requisição a uma página passada como parâmetro.
+
+Indique na saída e nessa ordem (apenas os valores):
+O RTT da requisição HTTP em milissegundos (utilize o /proc/uptime, o comando time ou o próprio curl/wget para isso);
+A hora retornada pelo servidor (formato HH:MM:SS);
+A hora atual da máquina (formato HH:MM:SS);
+A diferença de tempo entre a hora da máquina e a hora do servidor em segundos;
+
+Lembre-se de implementar a funcionalidade extra.
+
