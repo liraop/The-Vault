@@ -1,0 +1,33 @@
+O linux apresenta diferentes ferramentas de geração de números de checagem: sum, cksum, md5sum, sha1sum, sha256sum, sha512sum, entre outras. Tais ferramentas funcionam gerando um valor curto que representa unicamente o arquivo. Por exemplo, o SUM ele opera adicionando cada byte do arquivo mas mantendo a soma em um valor de 2 bytes no máximo. Programas mais avançados como o md5sum e o sha1sum fazem uso de algoritmos ainda mais complexos.
+
+Faça um script que recebe um arquivo como entrada. Cada linha do artigo contem um valor de checagem, um algoritmo (podendo ser CRC, MD5 ou SHA1) e um arquivo. Veja o exemplo de arquivo abaixo:
+d41d8cd98f00b204e9800998ecf8427e MD5 Prova.pdf
+894691236 CRC status.htm
+99256b9c4b3313cda8b5234aa53e7e6b011b6dd2 SHA1 tmp.htm
+9da7b77c8be23dafb5d339ce7dc5087d MD5 Arquivo Exemplo.txt
+
+Seu script deve procurar por esses arquivos no diretório atual e verificar se esses arquivos existem e, caso existam, se o checksum é igual ao indicado no arquivo. Exemplo de execução:
+matheusgr@r2d2:~$ cat arquivos
+d41d8cd98f00b204e9800998ecf8427e MD5 Prova.pdf
+894691236 CRC status.htm
+99256b9c4b3313cda8b5234aa53e7e6b011b6dd2 SHA1 tmp.htm
+9da7b77c8be23dafb5d339ce7dc5087d MD5 Arquivo Exemplo.txt
+matheusgr@r2d2:~$ ls -w1
+arquivos
+Prova.pdf
+script.sh
+tmp.htm
+matheusgr@r2d2:~$ ./script.sh arquivos
+OK Prova.pdf
+NOT_FOUND status.htm
+ERROR tmp.htm
+OK Arquivo Exemplo.txt
+
+Faça uma funcionalidade extra. Exemplos:
+Calcular o valor de checagem dos arquivos indicados no arquivo recebido como parâmetro
+Calcular o valor de checagem da entrada (quando não há parâmetros) utilizando diferentes algoritmos
+Calcular o valor de checagem dos arquivos de um diretório passado como parâmetro
+
+Não altere o formato do arquivo passado como parâmetro para implementar sua funcionalidade extra.
+
+
