@@ -1,0 +1,49 @@
+Exercício 11
+
+Uma estratégia simples de compartilhar arquivos é fazer uso do módulo SimpleHTTPServer de Python 2 (ou http.server de Python 3). Este módulo inicializa um servidor HTTP que oferece acesso aos arquivos do diretório atual. Para inicializar esse serviço, basta executar o Python como indicado abaixo:
+python -m SimpleHTTPServer 8080
+python -m http.server 8080
+Python 2
+Python 3
+
+Após inicializado, é possível listar os arquivos e diretórios da pasta atual, bem como baixar qualquer arquivo através de uma requisição HTTP. Veja o exemplo abaixo:
+matheusgr@gaita:/tmp/1$ ls -la
+total 28
+drwxr-xr-x  3 matheusgr splab  4096 Sep  6 11:45 .
+drwxrwxrwt 21 root      root  16384 Sep  6 11:49 ..
+-rw-r--r--  1 matheusgr splab     2 Sep  6 11:45 0
+-rw-r--r--  1 matheusgr splab     2 Sep  6 11:45 1
+drwxr-xr-x  2 matheusgr splab  4096 Sep  6 11:46 2
+matheusgr@gaita:/tmp/1$ python -m SimpleHTTPServer 8080 &
+Serving HTTP on 0.0.0.0 port 8080 ...
+matheusgr@gaita:/tmp/1$ curl http://localhost:8080/
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><html>
+<title>Directory listing for /</title>
+<body>
+<h2>Directory listing for /</h2>
+<hr>
+<ul>
+<li><a href="0">0</a>
+<li><a href="1">1</a>
+<li><a href="2/">2/</a>
+</ul>
+<hr>
+</body>
+</html>
+
+Considere que uma instância desse serviço está em execução. O objetivo deste exercício é construir um script shell que receba o endereço desse serviço como parâmetro e que copie os arquivos que estão presentes nesse servidor (ignorando os diretórios). Veja exemplo de execução:
+
+
+matheusgr@gaita:/tmp/2$ ls
+matheusgr@gaita:/tmp/2$ ~/meu_script.sh http://localhost:8080/
+matheusgr@gaita:/tmp/2$ ls
+0
+1
+
+Utilize o wget ou o curl para baixar os arquivos.
+
+Possíveis funcionalidades adicionais:
+Fazer o código em Python
+Baixar também os diretórios e seus arquivos
+Fazer o checksum dos arquivos recebidos e confrontar contra um arquivo de referência
+
