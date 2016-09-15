@@ -1,0 +1,47 @@
+Exercício 12
+
+Construa um sistema que será responsável por controlar os backups de um diretório. Seu sistema funcionará recebendo dois ou três parâmetros. Quando receber dois parâmetros, ele recebe um diretório que será a ORIGEM do backup seguido por um diretório de DESTINO. Quando receber três parâmetros, ele recebe o parâmetro -z seguido por ORIGEM e então DESTINO.
+
+Quando opera sem o parâmetro -z, o sistema deve criar uma cópia do diretório ORIGEM no diretório DESTINO. Se uma cópia do diretório ORIGEM já existe no diretório DESTINO, deve colocar um .NÚMERO ao final do diretório. Veja o exemplo:
+
+matheusgr@gaita:/tmp/1$ ls -la
+total 28
+drwxr-xr-x  3 matheusgr splab  4096 Sep  6 11:45 .
+drwxrwxrwt 21 root      root  16384 Sep  6 11:49 ..
+-rw-r--r--  1 matheusgr splab     2 Sep  6 11:45 0
+-rw-r--r--  1 matheusgr splab     2 Sep  6 11:45 1
+drwxr-xr-x  2 matheusgr splab  4096 Sep  6 11:46 2
+matheusgr@gaita:/tmp/1$ ~/backup.sh /tmp/1 /tmp/destino
+Criando backup de /tmp/1 em /tmp/destino/1
+matheusgr@gaita:/tmp/1$ cd /tmp/destino
+matheusgr@gaita:/tmp/destino$ ls
+1
+matheusgr@gaita:/tmp/destino$ ~/backup.sh /tmp/1 /tmp/destino
+Criando backup de /tmp/1 em /tmp/destino/1.1
+matheusgr@gaita:/tmp/destino$ ~/backup.sh /tmp/1 /tmp/destino
+Criando backup de /tmp/1 em /tmp/destino/1.2
+
+Se utilizando o parâmetro -z for usado, a cópia gerada deve ser colocada em um arquivo compactido (use zip ou tar). Se o arquivo já existir ele deve sinalizar um erro e sair.
+matheusgr@gaita:/tmp/1$ ls -la
+total 28
+drwxr-xr-x  3 matheusgr splab  4096 Sep  6 11:45 .
+drwxrwxrwt 21 root      root  16384 Sep  6 11:49 ..
+-rw-r--r--  1 matheusgr splab     2 Sep  6 11:45 0
+-rw-r--r--  1 matheusgr splab     2 Sep  6 11:45 1
+drwxr-xr-x  2 matheusgr splab  4096 Sep  6 11:46 2
+matheusgr@gaita:/tmp/1$ ~/backup.sh -z /tmp/1 /tmp/destino
+Criando backup de /tmp/1 em /tmp/destino/1.tar.gz
+matheusgr@gaita:/tmp/1$ cd /tmp/destino
+matheusgr@gaita:/tmp/destino$ ls
+1.tar.gz
+matheusgr@gaita:/tmp/destino$ ~/backup.sh -z /tmp/1 /tmp/destino
+Erro: Arquivo existente /tmp/1.tar.gz
+matheusgr@gaita:/tmp/destino$ echo $?
+1
+
+Possíveis funcionalidades adicionais:
+Fazer o código em Python
+Fazer backup apenas quando houver alterações
+Gerar um relatório dos backups existentes (data de criação e tamanho)
+Eliminar os backups mais antigos (só manter 4 versões de backup)
+
