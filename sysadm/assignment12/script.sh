@@ -1,12 +1,14 @@
 #!/bin/bash
 
 ###
-### remove bars from paths 
+### returns the last field of a text
+### $1 = delimiter
+### $2 = text
 ###
-function getFinalName()
+function getLastDelimitedField()
 {
-	ABSOLUTE=$1
-	echo $1 | rev | cut -d"/" -f1 | rev
+	ABSOLUTE=$2
+	echo $2 | rev | cut -d"$1" -f1 | rev
 }
 
 ###
@@ -20,22 +22,24 @@ function createCopy()
 }
 
 ###
-### check files' version in
+### check files' occurrences in
 ### the target folder. 
 ###
-function checkVersion()
+function checkOccurrences()
 {
-	FILE=$1
+	FILE=$(getLastDelimitedField / $1)
 	TARGET=$2
-	GREP=`ls $2 | grep $1`
+	GREP=`ls $2 | grep $FILE`
 	
 	if [[ -z "$GREP" ]]; then
-		printf "NADA"
+		echo 0			## no occurrences on folder
+	else
+		echo "$GREP" | rev | cut -d"." -f1 | rev 
 	fi
 }
 
 if [ "$#" -eq 2 ]; then
-	checkVersion $1 $2
+	checkOccurrences $1 $2
 elif [ "$#" -eq 3 ]; then
 	if [ "$1" == "-z" ]; then
 		echo 0
