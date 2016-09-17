@@ -1,16 +1,21 @@
 #!/bin/bash
 
-if [ "$#" -eq 2 ];
-then
+function createCopy()
+{
 	SOURCE=$1
 	TARGET=$2
+	rsync -ar $1 $2
+}
+
+if [ "$#" -eq 2 ];
+then
+
 elif [ "$#" -eq 3 ];
 then
 	if [ "$1" == "-z" ];
 	then
-		printf "geras"
-	else 
-		exit 0
+
+	else
 	fi
 
 fi
