@@ -1,40 +1,54 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #####
+#
 # Script written to automatically adjust nvidia's GPU fan speed.
 #
 # written by liraop - lirapdo@gmail.com
 #
 #####
 
-gputemp=`nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits`
+## settings
+set -o errexit
+set -o pipefail
+set -o nounset
 
-## enable GPU persistence
 
-startSpeed=`nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits`
+## get GPU core temperature
+gputemp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)
+## enable fan control
+nsReturn=$(nvidia-settings -a [gpu:0]/GPUFanControlState=1)
+## get current fan speed
+startSpeed=$(nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits)
+
+
+## check temperature, set target speed, set fan speed
 case $gputemp in
 [0-4][0-9])
    targetSpeed=40
-   `nvidia-settings -a [fan:0]/GPUTargetFanSpeed=$targetSpeed`
+   nsReturn=$(nvidia-settings -a [fan:0]/GPUTargetFanSpeed=${targetSpeed})
    ;;
 5[0-9])
    targetSpeed=50
-   `nvidia-settings -a [fan:0]/GPUTargetFanSpeed=$targetSpeed`
+   nsReturn=$(nvidia-settings -a [fan:0]/GPUTargetFanSpeed=${targetSpeed})
    ;;
 6[0-9])
    targetSpeed=60
-   `nvidia-settings -a [fan:0]/GPUTargetFanSpeed=$targetSpeed`
+   nsReturn=$(nvidia-settings -a [fan:0]/GPUTargetFanSpeed=${targetSpeed})
    ;;
 [7-9][0-9])
    targetSpeed=100
-   `nvidia-settings -a [fan:0]/GPUTargetFanSpeed=$targetSpeed`
+   nsReturn=$(nvidia-settings -a [fan:0]/GPUTargetFanSpeed=${targetSpeed})
    ;;
 *)
    msg="We can certainly say something is wrong"
    ;;
 esac
 
-finalSpeed=`nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits`
-msg="Fan speed was $startSpeed%\nFan speed is $finalSpeed%"
+## where the magic happens to fix fan speed status
+nsReturn=$(nvidia-settings -a [gpu:0]/GPUFanControlState=1)
+## gets fan final speed
+finalSpeed=$(nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits)
 
-printf %b "$msg"
+msg="Fan speed was ${startSpeed}%\nFan speed is ${finalSpeed}%\n"
+printf %b "${msg}"
