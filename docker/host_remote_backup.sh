@@ -9,6 +9,9 @@
 #
 exportContainer () {
 	NAME=$1
+
+	printf "%s\n" "Exporting container $NAME"	
+
 	docker export $1 > "$3/$1$2.tar"
 		printf %"s\n" "$1$2.tar"
 }
@@ -34,8 +37,10 @@ if [ "$#" -eq 0 ]; then
 elif [ "$#" -eq 1 ]; then
 	if [ "$1" != "-c" ]; then
 		printf "Invalid option"
-	else 
-		tar -caf "/tmp/docker_backup$DATE.tar.bz2" /tmp/dockerbkp
+	else
+		printf "%s\n" "Compressing backup files..."
+ 
+		tar -caf "/tmp/docker_backup$DATE.tar.bz2" /tmp/dockerbkp &> /dev/null
 	fi
 
 fi
