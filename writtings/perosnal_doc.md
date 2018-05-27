@@ -3,7 +3,7 @@ This document work both as documentation and learning aid.
 You can find here the majority of concepts and/or guides that helped me to solve problems or get to know something new.
 
 ### [Certificates](#certs)
-### [Keys] (#keys)
+### [Keys](#keys)
 
 # <a name=certs>Certificates</a>
 There are two major categories of certificates:
