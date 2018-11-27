@@ -6,37 +6,30 @@ ORDER BY QTD_PROF
 DESC;
 /
 --1b
-SELECT DISTINCT nome
-FROM fat_alocacao F
-INNER JOIN dim_professor
-ON (F.id_professor = dim_professor.id_professor)
-WHERE NOT EXISTS(SELECT * FROM fat_alocacao WHERE id_curso = 2 AND id_professor = F.id_professor)
-ORDER BY nome
+SELECT DISTINCT DEREF(A.id_professor).nome AS NOME
+FROM fat_obj_tab_alocacao A
+WHERE NOT EXISTS(SELECT DEREF(B.id_professor).nome FROM fat_obj_tab_alocacao B WHERE DEREF(B.id_curso).id_curso = 2 AND DEREF(B.id_professor).nome = DEREF(A.id_professor).nome)
+ORDER BY NOME
 ASC;
 /
 --1c
-SELECT *
-FROM (SELECT P.nome, AVG(D.carga) as MEDIA_CH
-FROM fat_alocacao F
-INNER JOIN dim_disciplina D
-      ON F.id_disciplina = D.id_disciplina
-INNER JOIN dim_professor P
-      ON F.id_professor = P.id_professor
-GROUP BY P.nome
+
+SELECT * FROM(
+SELECT DEREF(A.id_professor).nome, AVG(DEREF(A.id_disciplina).cargaHoraria) AS MEDIA_CH
+FROM fat_obj_tab_alocacao A
+GROUP BY DEREF(A.id_professor).nome
 ORDER BY MEDIA_CH
 DESC)
 WHERE ROWNUM <= 5;
 /
 --1d
-SELECT DISTINCT nome
-FROM fat_alocacao F
-INNER JOIN dim_professor
-ON (F.id_professor = dim_professor.id_professor)
-WHERE (F.id_curso = 2 AND dim_professor.id_professor = F.id_professor)
-AND (F.id_professor IN (SELECT Y.id_professor FROM fat_alocacao Y WHERE Y.id_curso = 1))
-ORDER BY nome
+SELECT DISTINCT DEREF(A.id_professor).nome as NOME
+FROM fat_obj_tab_alocacao A
+WHERE (DEREF(A.id_curso).id_curso = 2)
+AND (DEREF(A.id_professor).nome IN (SELECT DEREF(B.id_professor).nome FROM fat_obj_tab_alocacao B WHERE DEREF(B.id_curso).id_curso = 1))
+ORDER BY NOME
 ASC;
-/
+
 --1e
 SELECT *
 FROM ( SELECT S.codigo, COUNT(*) AS COUNT_SALA
