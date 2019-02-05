@@ -66,3 +66,11 @@ ssh-add ~/.ssh/id_key
 ```
 
 Now the private keys is ready to be used by SSH client to connect with your pubkey somewhere over the rainbow.
+
+#### Copy pubkey to remote server 
+
+Once you have the keys on client machine set up, the next step is make the remote server recognize your key. 
+
+```
+ssh-copy-id user@host
+```
