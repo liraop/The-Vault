@@ -5,15 +5,14 @@
                     "name":"ui",
                     "size":1000,
                     "imports":[
-                        "boardvantage.collaboration_services.navigation"
+                        "boardvantage.meetx-api.client"
                     ]
                 },
                 {
                     "name":"app",
                     "size":1000,
                     "imports":[
-                        "boardvantage.commons.json-layout",
-                        "boardvantage.task_management.security"
+                        "boardvantage.meetx-api.client"
                     ]
                 },
                 {
@@ -40,40 +39,10 @@
             ]
         },
         {
-            "name":"collaboration_services",
-            "children":[
-                {
-                    "name":"navigation",
-                    "size":1001,
-                    "imports":[]
-                },
-                {
-                    "name":"commons:utils",
-                    "size":1003,
-                    "imports":[]
-                },
-                {
-                    "name":"discussions",
-                    "size":1003,
-                    "imports":[]
-                }
-            ]
-        },
-        {
             "name":"meetx-api",
             "children":[
                 {
                     "name":"client",
-                    "size":1004,
-                    "imports":[]
-                }
-            ]
-        },
-        {
-            "name":"commons",
-            "children":[
-                {
-                    "name":"json-layout",
                     "size":1004,
                     "imports":[]
                 }
