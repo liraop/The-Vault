@@ -36,7 +36,7 @@
                     "name":"discussions",
                     "size":1000,
                     "imports":[
-                        "boardvantage.collaboration_services.commons-utils",
+                        "boardvantage.collaboration_services.commons:utils",
                         "boardvantage.meetx-api.client"
                     ]
                 }
