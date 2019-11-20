@@ -20,13 +20,18 @@
                     "name":"core",
                     "size":1000,
                     "imports":[
-                        "boardvantage.collaboration_services.discussions",
-                        "boardvantage.collaboration_services.commons:utils",
                         "boardvantage.meetx-api.client"
                     ]
                 },
                 {
                     "name":"security",
+                    "size":1000,
+                    "imports":[
+                        "boardvantage.meetx-api.client"
+                    ]
+                },
+                {
+                    "name":"discussions",
                     "size":1000,
                     "imports":[
                         "boardvantage.meetx-api.client"
