@@ -3,35 +3,35 @@
             "name":"task_management",
             "children":[{
                     "name":"ui",
-                    "size":1000,
+                    "size":1001,
                     "imports":[
                         "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"app",
-                    "size":1000,
+                    "size":1002,
                     "imports":[
                         "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"core",
-                    "size":1000,
+                    "size":1003,
                     "imports":[
                         "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"security",
-                    "size":1000,
+                    "size":1004,
                     "imports":[
                         "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"discussions",
-                    "size":1000,
+                    "size":1005,
                     "imports":[
                         "boardvantage.meetx_api.client"
                     ]
@@ -43,7 +43,7 @@
             "children":[
                 {
                     "name":"client",
-                    "size":1004,
+                    "size":1010,
                     "imports":[]
                 }
             ]
