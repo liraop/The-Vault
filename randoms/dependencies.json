@@ -21,7 +21,7 @@
                     "size":1000,
                     "imports":[
                         "boardvantage.collaboration_services.discussions",
-                        "boardvantage.collaboration_services.commons:utils",
+                        "boardvantage.collaboration_services.commons-utils",
                         "boardvantage.meetx-api.client"
                     ]
                 },
@@ -36,7 +36,7 @@
                     "name":"discussions",
                     "size":1000,
                     "imports":[
-                        "boardvantage.collaboration_services.commons:utils",
+                        "boardvantage.collaboration_services.commons-utils",
                         "boardvantage.meetx-api.client"
                     ]
                 }
@@ -51,7 +51,7 @@
                     "imports":[]
                 },
                 {
-                    "name":"commons:utils",
+                    "name":"commons-utils",
                     "size":1003,
                     "imports":[]
                 },
