@@ -5,41 +5,41 @@
                     "name":"ui",
                     "size":1000,
                     "imports":[
-                        "boardvantage.meetx-api.client"
+                        "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"app",
                     "size":1000,
                     "imports":[
-                        "boardvantage.meetx-api.client"
+                        "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"core",
                     "size":1000,
                     "imports":[
-                        "boardvantage.meetx-api.client"
+                        "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"security",
                     "size":1000,
                     "imports":[
-                        "boardvantage.meetx-api.client"
+                        "boardvantage.meetx_api.client"
                     ]
                 },
                 {
                     "name":"discussions",
                     "size":1000,
                     "imports":[
-                        "boardvantage.meetx-api.client"
+                        "boardvantage.meetx_api.client"
                     ]
                 }
             ]
         },
         {
-            "name":"meetx-api",
+            "name":"meetx_api",
             "children":[
                 {
                     "name":"client",
