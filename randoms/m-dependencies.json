@@ -1,47 +1,47 @@
 [
     {
         "name": "bv-commons",
-        "size": 3938,
+        "size": 300,
         "imports": [
         ]
     },
     {
         "name": "meetx-components.custom-card-component",
-        "size": 2000,
+        "size": 20,
         "imports": [
             "bv-commons"
         ]
     },
     {
         "name":"meetx-components.meeting-card-component",
-        "size": 2000,
+        "size": 50,
         "imports":[
             "bv-commons"
         ]
     },
     {
         "name":"meetx-compomnents.calendar-card-component",
-        "size": 2000,
+        "size": 100,
         "imports": [
             "bv-commons"
         ]
     },
     {
         "name": "meetx-components.new-items-card-component",
-        "size": 2000,
+        "size": 150,
         "imports": [
             "bv-commons"
         ]
     },
     {
         "name":"meetx-components.meeting-component",
-        "size": 2000,
+        "size": 200,
         "imports":[
         ]
     },
     {
         "name": "meetx-compomnents.dashboard-component-v2",
-        "size": 2500,
+        "size": 300,
         "imports": [
             "bv-commons",
             "meetx-components.calendar-card-component",
