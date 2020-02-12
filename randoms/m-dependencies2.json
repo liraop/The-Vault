@@ -117,7 +117,7 @@
         "name": "nbv.meetxhtmlclient",
         "size": 200,
         "imports": [
-            "nbv.meetx-components"
+            "nbv.meetx-components.components"
         ]
         
     }
