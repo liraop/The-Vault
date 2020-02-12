@@ -10,6 +10,11 @@
         "imports": []
     },
     {
+        "name": "nbv.cs-commons.users-lookup",
+        "size": 230,
+        "imports": []
+    },
+    {
         "name": "nbv.meetx-components.custom-card-component",
         "size": 20,
         "imports": [
@@ -75,5 +80,46 @@
         "name": "nbv.meetx-components.directory-component",
         "size": 200,
         "imports": []
+    },
+    {
+        "name": "nbv.inbox.inbox-ui",
+        "size": 200,
+        "imports": [
+            "nbv.cs-commons.cs-navigation",
+            "nbv.cs-commons.users-lookup"
+        ]
+    },
+    {
+        "name": "nbv.meetx-components.directory-component",
+        "size": 200,
+        "imports": []
+    },
+    {
+        "name": "nbv.task-management.task-ui",
+        "size": 230,
+        "imports": [
+            "nbv.cs-commons.users-lookup",
+            "nbv.cs-commons.cs-navigation"
+        ]
+    },
+    {
+        "name": "nbv.meetx-components.components",
+        "size": 200,
+        "imports": [
+            "nbv.cs-commons.cs-navigation",
+            "nbv.cs-commons.users-lookup",
+            "nbv.meetx-components.calendar-card-component",
+            "nbv.meetx-components.custom-card-component",
+            "nbv.meetx-components.new-items-card-component"
+        ]
+    },
+    {
+        "name": "nbv.meetxhtmlclient",
+        "size": 200,
+        "imports": [
+            "nbv.meetx-components"
+        ]
+        
     }
+
 ]
