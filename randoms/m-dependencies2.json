@@ -13,66 +13,66 @@
         "name": "nvb.meetx-components.custom-card-component",
         "size": 20,
         "imports": [
-            "bv-commons"
+            "nbv.bv-commons"
         ]
     },
     {
-        "name":"meetx-components.meeting-card-component",
+        "name":"nvb.meetx-components.meeting-card-component",
         "size": 50,
         "imports":[
-            "bv-commons"
+            "nbv.bv-commons"
         ]
     },
     {
-        "name":"meetx-components.calendar-card-component",
+        "name":"nvb.meetx-components.calendar-card-component",
         "size": 100,
         "imports": [
-            "bv-commons"
+            "nbv.bv-commons"
         ]
     },
     {
         "name": "nvb.meetx-components.new-items-card-component",
         "size": 150,
         "imports": [
-            "bv-commons"
+            "nbv.bv-commons"
         ]
     },
     {
-        "name":"meetx-components.meeting-component",
+        "name":"nvb.meetx-components.meeting-component",
         "size": 200,
         "imports":[
-            "bv-commons"
+            "nbv.bv-commons"
         ]
     },
     {
-        "name":"meetx-components.tgi-card-component",
+        "name":"nvb.meetx-components.tgi-card-component",
         "size": 200,
         "imports":[
-            "bv-commons"
+            "nbv.bv-commons"
         ]
     },
     {
         "name": "nvb.meetx-components.dashboard-component-v2",
         "size": 300,
         "imports": [
-            "bv-commons",
-            "meetx-components.calendar-card-component",
-            "meetx-components.custom-card-component",
-            "meetx-components.meeting-card-component",
-            "meetx-components.new-items-card-component",
-            "meetx-components.tgi-card-component"
+            "nbv.bv-commons",
+            "nbv.meetx-components.calendar-card-component",
+            "nbv.meetx-components.custom-card-component",
+            "nbv.meetx-components.meeting-card-component",
+            "nbv.meetx-components.new-items-card-component",
+            "nbv.meetx-components.tgi-card-component"
         ]
     },
     {
-        "name":"meetx-components.meetings-creation-component",
+        "name":"nvb.meetx-components.meetings-creation-component",
         "size": 400,
         "imports":[
-            "bv-commons",
-            "cs-commons.cs-navigation"
+            "nbv.bv-commons",
+            "nbv.cs-commons.cs-navigation"
         ]
     },
     {
-        "name":"meetx-components.directory-component",
+        "name":"nvb.meetx-components.directory-component",
         "size": 200,
         "imports":[]
     }
