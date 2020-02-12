@@ -1,8 +1,14 @@
 [
     {
         "name": "bv-commons",
-        "size": 300,
+        "size": 1000,
         "imports": [
+        ]
+    },
+    {
+        "name": "cs-commons.cs-navigation",
+        "size": 230,
+        "imports":[
         ]
     },
     {
@@ -37,6 +43,14 @@
         "name":"meetx-components.meeting-component",
         "size": 200,
         "imports":[
+            "bv-commons"
+        ]
+    },
+    {
+        "name":"meetx-components.tgi-card-component",
+        "size": 200,
+        "imports":[
+            "bv-commons"
         ]
     },
     {
@@ -47,7 +61,22 @@
             "meetx-components.calendar-card-component",
             "meetx-components.custom-card-component",
             "meetx-components.meeting-card-component",
-            "meetx-components.new-items-card-component"
+            "meetx-components.new-items-card-component",
+            "meetx-components.tgi-card-component"
         ]
-    } 
+    },
+    {
+        "name":"meetx-components.meetings-creation-component",
+        "size": 400,
+        "imports":[
+            "bv-commons",
+            "cs-commons.cs-navigation"
+        ]
+    },
+    {
+        "name":"meetx-components.directory-component",
+        "size": 200,
+        "imports":[        
+        ]
+    }
 ]
