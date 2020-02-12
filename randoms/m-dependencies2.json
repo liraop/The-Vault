@@ -17,14 +17,14 @@
         ]
     },
     {
-        "name":"nvb.meetx-components.meeting-card-component",
+        "name": "nvb.meetx-components.meeting-card-component",
         "size": 50,
-        "imports":[
+        "imports": [
             "nbv.bv-commons"
         ]
     },
     {
-        "name":"nvb.meetx-components.calendar-card-component",
+        "name": "nvb.meetx-components.calendar-card-component",
         "size": 100,
         "imports": [
             "nbv.bv-commons"
@@ -38,16 +38,16 @@
         ]
     },
     {
-        "name":"nvb.meetx-components.meeting-component",
+        "name": "nvb.meetx-components.meeting-component",
         "size": 200,
-        "imports":[
+        "imports": [
             "nbv.bv-commons"
         ]
     },
     {
-        "name":"nvb.meetx-components.tgi-card-component",
+        "name": "nvb.meetx-components.tgi-card-component",
         "size": 200,
-        "imports":[
+        "imports": [
             "nbv.bv-commons"
         ]
     },
@@ -64,16 +64,16 @@
         ]
     },
     {
-        "name":"nvb.meetx-components.meetings-creation-component",
+        "name": "nvb.meetx-components.meetings-creation-component",
         "size": 400,
-        "imports":[
+        "imports": [
             "nbv.bv-commons",
             "nbv.cs-commons.cs-navigation"
         ]
     },
     {
-        "name":"nvb.meetx-components.directory-component",
+        "name": "nvb.meetx-components.directory-component",
         "size": 200,
-        "imports":[]
+        "imports": []
     }
 ]
