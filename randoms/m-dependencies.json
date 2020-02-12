@@ -26,7 +26,7 @@
         ]
     },
     {
-        "name":"meetx-compomnents.calendar-card-component",
+        "name":"meetx-components.calendar-card-component",
         "size": 100,
         "imports": [
             "bv-commons"
@@ -54,7 +54,7 @@
         ]
     },
     {
-        "name": "meetx-compomnents.dashboard-component-v2",
+        "name": "meetx-components.dashboard-component-v2",
         "size": 300,
         "imports": [
             "bv-commons",
