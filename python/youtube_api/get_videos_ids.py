@@ -10,6 +10,7 @@ import json
 import google_auth_oauthlib.flow
 import googleapiclient.discovery
 import googleapiclient.errors
+from youtube_transcript_api import YouTubeTranscriptApi
 
 scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
 
@@ -74,8 +75,17 @@ def main():
 
         nextPageToken = response.get('nextPageToken', None)
 
-    print("done")
+    print("DONE...")
     print("Found %d videos" % len(videos))
+
+    for v in range(len(videos)):
+        print("[%s] Pegando transcrição" % videos[v]['title'])
+        try:
+            videos[v]['transcript'] = YouTubeTranscriptApi.get_transcript(videos[v]['id'], languages=['pt'])
+            print(videos[v]['transcript'])
+        except:
+            print("Não foi possível pegar a transcrição.")
+        print("[%s] Finalizado" % videos[v]['title'])
 
 if __name__ == "__main__":
     main()
