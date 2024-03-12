@@ -21,11 +21,9 @@ def create_timestamp():
     """
     return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-def serialize_list_to_file(elements, file_name=""):
-    if file_name == "":
-        file_name = "%s_videos" % create_timestamp()
+def serialize_list_to_file(elements, file_name):
     try:
-        with open(file_name, 'w') as file:
+        with open(file_name, 'w', encoding='utf-8') as file:
             json.dump(elements, file, indent=4)
         print(f"List serialized to '{file_name}' successfully.")
     except Exception as e:
@@ -33,23 +31,50 @@ def serialize_list_to_file(elements, file_name=""):
 
 def extract_and_format_text(entries):
     """
-    Extract 'text' field from entries and format into a concatenated UTF-8 English text variable.
+    Extract 'text' field from entries and format into a concatenated utf-8 English text variable.
 
     Args:
         entries (list): List of dictionaries containing 'text' field.
 
     Returns:
-        str: Concatenated UTF-8 English text variable.
+        str: Concatenated utf-8 English text variable.
     """
     concatenated_text = ""
     for entry in entries:
         text = entry.get("text", "")
         concatenated_text += text + " "
 
-    # Encode to UTF-8
+    # Encode to unicode-escape
     concatenated_text = concatenated_text.encode("utf-8").decode("utf-8")
 
     return concatenated_text.strip()
+
+def write_formatted_text_from_list(elements, file_name):
+    """
+    Write formatted text from a list of elements with 'title' and 'text' fields to a file.
+
+    Args:
+        elements (list): List of dictionaries containing 'title' and 'text' fields.
+        file_name (str): Name of the file to write to.
+    """
+    try:
+        with open(file_name, 'w', encoding='utf-8') as file:
+            for element in elements:
+                title = element.get("title", "")
+                text = element.get("transcript", "")
+                file.write(f"{title}\n{'=' * len(title)}\n{text}\n\n")
+        print(f"Formatted text written to '{file_name}' successfully.")
+    except Exception as e:
+        print(f"Error writing formatted text to '{file_name}': {e}")
+
+def write_no_transcripts(elements, file_name):
+    try:
+        with open(file_name, 'w', encoding='utf-8') as file:
+            for element in elements:
+                file.write(f"{element}\n")
+        print(f"No transcripts text written to '{file_name}' successfully.")
+    except Exception as e:
+        print(f"Error writing No transcripts text to '{file_name}': {e}")
 
 def main():
     # Disable OAuthlib's HTTPS verification when running locally.
@@ -124,13 +149,20 @@ def main():
             print("Não foi possível pegar a transcrição.")
         print("[%s] Finalizado" % videos[v]['title'])
 
-    serialize_list_to_file(videos)
+    videos_sem_transcript = []
+    videos_com_transcript = []
 
     for v in range(len(videos)):
         video = videos[v]
         if len(video['transcript']) > 0:
             formatted_video_transcript = extract_and_format_text(video['transcript'])
-            print (formatted_video_transcript)
+            videos[v] ['transcript'] = formatted_video_transcript
+            videos_com_transcript.append(video)
+        else:
+            videos_sem_transcript.append(video['title'])
+
+    write_no_transcripts(videos_sem_transcript, "%s_sem_transcript" % create_timestamp())
+    write_formatted_text_from_list(videos_com_transcript, "%s_finais" % create_timestamp())
 
 
 if __name__ == "__main__":
